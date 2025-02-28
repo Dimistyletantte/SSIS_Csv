@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="Icons">
+    <file>Add.png</file>
+    <file>Close.png</file>
+    <file>College.png</file>
+    <file>Menu.png</file>
+    <file>Minimize.png</file>
+    <file>Program.png</file>
+    <file>Search.png</file>
+    <file>Student.png</file>
+    <file>Window Icon.ico</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,54 @@
+#Table QTableWidget{border-radius: 3px;background-color: rgb(27, 29, 37); border: 1px solid rgb(32, 34, 41); color: white;}
+#Table QHeaderView::section{border: rgb(32, 34, 41); border-bottom: 1px solid rgb(27, 29, 37);background-color: rgb(27, 29, 37);color:white;font: bold 12pt "Century Gothic"; text-align:left; padding: 3px 5px;}
+#Background{border: 1px solid;}
+
+#Main{background-color: rgb(34, 32, 46);}
+#Buttons_and_Table{background: transparent;}
+#Table{background-color: rgb(27, 29, 37);border:}
+#Sidemenu{background-color: rgb(40, 42, 49); border-right: 1px solid rgb(30,32,39);}
+#Add_Interface{background-color: rgb(40, 42, 49); border-right: 1px solid rgb(30,32,39); font: bold 12pt "Century Gothic";}
+#Search_Interface{background-color: rgb(40, 42, 49); border-right: 1px solid rgb(30,32,39); font: bold 12pt "Century Gothic";}
+#Edit_Interface{background-color: rgb(40, 42, 49); border-right: 1px solid rgb(30,32,39); font: bold 12pt "Century Gothic";}
+#SEARCH{font: bold 8pt "Century Gothic"}
+
+#Addbtn,#Menubtn,#Menubtn_menu,#Searchbtn,#Editbtn,#Deletebtn,#Deselectbtn, #Searchlinebtn, #Refreshbtn{background: transparent;border:none;}
+#Addbtn::hover{background-color: rgb(106, 106, 106);}
+#Menubtn::hover{background-color: rgb(106, 106, 106);}
+#Menubtn_menu::hover{background-color: rgb(106, 106, 106);}
+#Searchbtn::hover{background-color: rgb(106, 106, 106);}
+#Editbtn::hover{background-color: rgb(106, 106, 106);}
+#Deletebtn::hover{background-color: rgb(106, 106, 106);}
+#Deselectbtn::hover{background-color: rgb(106, 106, 106);}
+#Searchlinebtn::hover{background-color: rgb(106, 106, 106);}
+#Refreshbtn::hover{background-color: rgb(106, 106, 106);}
+#Addbtn::pressed{background-color: rgb(70, 70, 70);}
+#Menubtn::pressed{background-color: rgb(70, 70, 70);}
+#Menubtn_menu::pressed{background-color: rgb(70, 70, 70);}
+#Searchbtn::pressed{background-color: rgb(70, 70, 70);}
+#Editbtn::pressed{background-color: rgb(70, 70, 70);}
+#Deletebtn::pressed{background-color: rgb(70, 70, 70);}
+#Deselectbtn::pressed{background-color: rgb(70, 70, 70);}
+#Searchlinebtn::pressed{background-color: rgb(70, 70, 70);}
+#Refreshbtn::pressed{background-color: rgb(70, 70, 70);}
+
+#Studentbtn{background: transparent;border:none;color:rgb(200, 200, 200);}
+#Programbtn{background: transparent;border:none;color:rgb(200, 200, 200);}
+#Collegebtn{background: transparent;border:none;color:rgb(200, 200, 200);}
+#Studentbtn::hover{background-color: rgb(65, 60, 90);color:white;}
+#Programbtn::hover{background-color: rgb(65, 60, 90);color:white;}
+#Collegebtn::hover{background-color: rgb(65, 60, 90);color:white;}
+#Studentbtn::pressed{background-color: rgb(34, 32, 46);color:white;}
+#Programbtn::pressed{background-color: rgb(34, 32, 46);color:white;}
+#Collegebtn::pressed{background-color: rgb(34, 32, 46);color:white;}
+
+#Title_Name{font: bold 8pt "Century Gothic";}
+#Title_bar{background-color: black;color:white; }
+QPushButton{background: transparent;border: none;}
+
+#Quitbtn::hover{background-color: red;border: none;}
+#Minimizebtn::hover{background-color: rgb(180, 180, 180);border: none;}
+
+QLabel{color: rgb(255, 255, 255);}
+
+#Title_Logo{image: url(Icons/Window Icon.ico);}
+
