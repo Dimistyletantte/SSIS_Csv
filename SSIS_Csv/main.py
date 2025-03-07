@@ -49,8 +49,13 @@ class SSIS_Window(QMainWindow):
         self.mouse_tracking = False
     
     def Refresh_Table(self):
-        self.ui.Studenttable.setRowCount(0)
+        self.ui.Studenttable.setSortingEnabled(False)
+        self.ui.Studenttable.clearContents()
+        self.ui.Studenttable.setRowCount(0) 
         self.load_data()
+        self.ui.Studenttable.sortItems(-1, QtCore.Qt.AscendingOrder)
+        self.ui.Studenttable.setSortingEnabled(True)
+
 
     def Add_Student_Info(self):
         self.course_mapping = {
@@ -301,23 +306,36 @@ class SSIS_Window(QMainWindow):
 
     def Search_table(self):
         search = self.ui.SearchLineEdit.text().strip().lower()
+        selected_field = self.ui.SearchByComboBox.currentText()
+
+        column_map = {
+        "Student ID": 0,
+        "First Name": 1,
+        "Last Name": 2,
+        "Year Level": 3,
+        "Gender": 4,
+        "Program": 5
+        }
+        if selected_field not in column_map:
+            return
+
+        search_column = column_map[selected_field]
+        found_match = False
 
         if not search:
             for row in range(self.ui.Studenttable.rowCount()):
                 self.ui.Studenttable.setRowHidden(row, False)
             return
+            
 
         for row in range(self.ui.Studenttable.rowCount()):
-            self.row_match = False
+            item = self.ui.Studenttable.item(row, search_column)
 
-            for col in range(self.ui.Studenttable.columnCount()):
-                item = self.ui.Studenttable.item(row,col)
+            if item and search in item.text().strip().lower():
+                self.ui.Studenttable.setRowHidden(row, False)
+            else:
+                self.ui.Studenttable.setRowHidden(row, True)
 
-                if item and search in item.text().strip().lower():
-                    self.row_match = True
-                    break
-
-            self.ui.Studenttable.setRowHidden(row, not self.row_match)
         self.ui.Studenttable.sortItems(1, QtCore.Qt.AscendingOrder)
         self.ui.SearchLineEdit.clear()
 
@@ -340,7 +358,7 @@ class SSIS_Window(QMainWindow):
             ws.append(row_data)  # Append new row to Excel sheet
         wb.save(path)
         wb.close()
-        self.show_success_message("Data saved successfully to Excel!")
+        self.show_error_message("Data saved successfully to Excel!")
         self.Refresh_Table()
 
     #Load Excel Data Function
@@ -391,6 +409,7 @@ class SSIS_Window(QMainWindow):
 
         if self.confirmation == True:
             self.ui.Studenttable.removeRow(selected_row)  # Remove row and shift up
+            self.deselect_row()
             self.show_success_message("Row deleted successfully!")
             self.save_data()  # Save changes to Excel
 
@@ -398,7 +417,7 @@ class SSIS_Window(QMainWindow):
     def initializeButtons(self):
         #Menu Animation
         self.ui.Menubtn.clicked.connect(lambda: (self.Sidemenu_Animation(),self.deselect_row(), self.Editbtn_Animation_close()))
-        self.ui.Menubtn_menu.clicked.connect(lambda: (self.Sidemenu_Animation(),self.deselect_row(), self.Editbtn_Animation_close()))
+        self.ui.Menubtn_menu.clicked.connect(lambda: (self.Sidemenu_Animation_close(),self.deselect_row(), self.Editbtn_Animation_close()))
         #Search and Add Animation
         self.ui.Searchbtn.clicked.connect(lambda: (self.Searchbtn_Animation(),self.deselect_row()))
         self.ui.Addbtn.clicked.connect(lambda: (self.Addbtn_Animation(),self.deselect_row()))
@@ -467,7 +486,7 @@ class SSIS_Window(QMainWindow):
         self.msg.setWindowTitle("Error")  
         self.msg.setText(message)  
         self.msg.setStandardButtons(QtWidgets.QMessageBox.Ok)  
-        self.msg.setStyleSheet("QLabel{color:red; font-size:14px; bold}")
+        self.msg.setStyleSheet("QLabel {color: red; font-size: 14px; font-weight: bold; }")
         self.msg.exec_()  
 
     def show_question_message(self, message):
@@ -476,7 +495,7 @@ class SSIS_Window(QMainWindow):
         self.msg.setWindowTitle("Confirmation") 
         self.msg.setText(message)  
         self.msg.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No) 
-        self.msg.setStyleSheet("QLabel{color:white; font-size:14px; bold}")
+        self.msg.setStyleSheet("QLabel {color: gray; font-size: 14px; font-weight: bold; }")
         response = self.msg.exec_()
 
         if response == QtWidgets.QMessageBox.Yes:
@@ -490,7 +509,7 @@ class SSIS_Window(QMainWindow):
         self.msg.setWindowTitle("Success")  
         self.msg.setText(message)  
         self.msg.setStandardButtons(QtWidgets.QMessageBox.Ok)  
-        self.msg.setStyleSheet("QLabel{color:white; font-size:14px; bold}")
+        self.msg.setStyleSheet("QLabel {color: green; font-size: 14px; font-weight: bold; }")
         self.msg.exec_()  
 
     
